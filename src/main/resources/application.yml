@@ -1,0 +1,48 @@
+server:
+   port: 8000
+   
+spring:
+   jpa: 
+      generate-ddl: false #启动时初始化数据库
+      show-sql: true
+      hibernate:
+         ddl-auto: none #启动过程中，根据实体自动映射成为数据库的表结构
+   datasource:
+      platform: h2
+      schema: classpath:schema.sql
+      data: classpath:data.sql
+   logging:
+      level:
+         root: INFO
+         org.hibernate: INFO
+         org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+         org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+   application:
+      name: microservice-provider-user #註冊到eureka server的名稱    
+   #於開發環境可能不需要註冊到eureka server         
+   #cloud:
+   #   service-registry:
+   #      auto-registration:
+   #         enabled: false   
+      
+eureka: 
+   client: 
+      serviceUrl: 
+         defaultZone: http://localhost:8761/eureka/ #欲註冊與查詢之eureka server地址
+   instance:
+      prefer-ip-address: true #註冊IP到eureka server,否則為hostname      
+               
+management.security.enabled: false     #關閉actuator安全性/也可使用spring-security擁有ACTUATOR的角色存取
+info: #自定義actuator端點/info.*的內容 
+   app:
+      name: '@project.artifactId@'    
+      encoding: '@project.build.sourceEncoding@'
+      java: 
+         source: '@java.version@'
+         target: '@java.version@'
+         
+         
+      
+      
+      
+      
