@@ -29,6 +29,7 @@ eureka:
    client: 
       serviceUrl: 
          defaultZone: http://localhost:8761/eureka/ #欲註冊與查詢之eureka server地址
+         #defaultZone: http://user:password123@localhost:8761/eureka/ 
    instance:
       prefer-ip-address: true #註冊IP到eureka server,否則為hostname      
                
